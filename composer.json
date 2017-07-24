@@ -1,0 +1,21 @@
+{
+    "name": "frank-houweling/zend-airbrake",
+    "description": "Airbrake (phpbrake) integration for Zend Framework 3 (ZF3)",
+    "type": "project",
+    "license": "GNU",
+    "keywords": [
+        "airbrake",
+        "phpbrake",
+        "exception",
+        "error",
+        "logging",
+        "zf3",
+        "zend"
+    ],
+    "homepage": "http://www.senet.nl/",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.0",
+    }
+ }
