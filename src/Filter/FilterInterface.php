@@ -11,6 +11,8 @@ namespace FrankHouweling\ZendAirbrake\Filter;
 
 use Airbrake\Errors\Notice;
 use Zend\Mvc\MvcEvent;
+use Zend\Stdlib\Request;
+use Zend\Stdlib\RequestInterface;
 
 /**
  * Interface FilterInterface
@@ -23,5 +25,5 @@ interface FilterInterface
      * @param MvcEvent $mvcEvent
      * @return mixed
      */
-    public function __invoke($notice): void;
+    public function __invoke($notice, RequestInterface $request);
 }

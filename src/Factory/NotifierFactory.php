@@ -13,6 +13,8 @@ use Airbrake\Notifier;
 use FrankHouweling\ZendAirbrake\Filter\FilterInterface;
 use FrankHouweling\ZendAirbrake\Module;
 use Zend\ServiceManager\Factory\FactoryInterface;
+use Zend\Stdlib\Request;
+use Zend\Stdlib\RequestInterface;
 
 /**
  * Class NotifierFactory
@@ -20,6 +22,12 @@ use Zend\ServiceManager\Factory\FactoryInterface;
  */
 class NotifierFactory implements FactoryInterface
 {
+    /**
+     * @param \Interop\Container\ContainerInterface $container
+     * @param string $requestedName
+     * @param array|NULL $options
+     * @return Notifier
+     */
     public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = NULL)
     {
         /** @var array $config */
@@ -32,7 +40,9 @@ class NotifierFactory implements FactoryInterface
             'host' => $connectionConfig['host']
         ]);
         Instance::set($notifier);
-        $this->attachFilters($config['filters'], $notifier);
+
+        $request = $container->get('Request');
+        $this->attachFilters($config['filters'], $notifier, $request);
         return $notifier;
     }
 
@@ -40,15 +50,20 @@ class NotifierFactory implements FactoryInterface
      * @param array $filterCollection
      * @param Notifier $notifier
      */
-    private function attachFilters(array $filterCollection, Notifier $notifier)
+    private function attachFilters(array $filterCollection, Notifier $notifier, RequestInterface $request)
     {
         /** @var callable $filter */
         foreach($filterCollection as $filter)
         {
             if(!is_callable($filter))
             {
-                $filter = $this->getFilter($filter);
+                $filterObject = $this->getFilter($filter);
+                $filter = function(array $notice) use($filterObject, $request)
+                {
+                    $filterObject($notice, $request);
+                };
             }
+
             $notifier->addFilter($filter);
         }
     }
