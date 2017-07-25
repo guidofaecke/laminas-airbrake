@@ -19,9 +19,17 @@
         "php": "^7.0",
         "airbrake/phpbrake": "^0.3"
     },
+    "require-dev": {
+        "phpunit/phpunit":                    "^5.7.17 || ^6.2.1",
+    },
     "autoload": {
         "psr-4": {
             "FrankHouweling\\ZendAirbrake\\": "src/"
+        }
+    },
+    "autoload-dev":      {
+        "psr-4": {
+            "FrankHouweling\\ZendAirbrakeTest\\": "tests/"
         }
     },
     "extra": {
