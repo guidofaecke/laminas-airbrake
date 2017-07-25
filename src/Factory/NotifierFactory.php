@@ -22,6 +22,8 @@ use Zend\Stdlib\RequestInterface;
  */
 class NotifierFactory implements FactoryInterface
 {
+    protected $container;
+
     /**
      * @param \Interop\Container\ContainerInterface $container
      * @param string $requestedName
@@ -30,6 +32,8 @@ class NotifierFactory implements FactoryInterface
      */
     public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = NULL)
     {
+        $this->container = $container;
+
         /** @var array $config */
         $config = $container->get('Config')[Module::CONFIG_MODULE_IDENTIFIER];
         /** @var array $connectionConfig */
@@ -57,11 +61,7 @@ class NotifierFactory implements FactoryInterface
         {
             if(!is_callable($filter))
             {
-                $filterObject = $this->getFilter($filter);
-                $filter = function(array $notice) use($filterObject, $request)
-                {
-                    $filterObject($notice, $request);
-                };
+                $filter = $this->getFilter($filter);
             }
 
             $notifier->addFilter($filter);
@@ -79,6 +79,5 @@ class NotifierFactory implements FactoryInterface
             $filterInfo = gettype($filter);
             throw new \InvalidArgumentException("The given filter of type `{$filterInfo}` is not a valid filter.");
         }
-        return new $filter;
-    }
+        return $this->container->get($filter);
 }

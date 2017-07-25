@@ -6,7 +6,6 @@
 * Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
 */
 
-
 namespace FrankHouweling\ZendAirbrake\Filter;
 
 use Airbrake\Errors\Notice;
@@ -17,10 +16,28 @@ use Zend\Stdlib\RequestInterface;
  * Class AbstractParamFilter
  * @package FrankHouweling\ZendAirbrake\Filter
  */
-class AbstractParamFilter implements FilterInterface
+abstract class AbstractParamFilter implements FilterInterface
 {
-    public function __invoke($notice, RequestInterface $request)
+    /**
+     * Returns the param name.
+     * @return mixed
+     */
+    abstract protected static function getName();
+
+    /**
+     * Returns the param value.
+     * @return string
+     */
+    abstract protected function getValue() : string;
+
+    /**
+     * @param array $notice
+     * @param RequestInterface $request
+     * @return array
+     */
+    public function __invoke($notice)
     {
-        return;
+        $notice['context'][static::getName()] = $this->getValue();
+        return $notice;
     }
 }
