@@ -1,8 +1,8 @@
 <?php
 /*
-* Copyright (C) Senet Eindhoven B.V. - All Rights Reserved
-* Unauthorized copying of this file, via any medium is strictly prohibited
-* Proprietary and confidential
+* This file is part of the Zend Airbrake module
+*
+* For license information, please view the LICENSE file that was distributed with this source code.
 * Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
 */
 
@@ -25,5 +25,5 @@ interface FilterInterface
      * @param MvcEvent $mvcEvent
      * @return mixed
      */
-    public function __invoke($notice, RequestInterface $request);
+    public function __invoke($notice);
 }

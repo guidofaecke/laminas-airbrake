@@ -2,7 +2,7 @@
     "name": "frank-houweling/zend-airbrake",
     "description": "Airbrake (phpbrake) integration for Zend Framework 3 (ZF3)",
     "type": "project",
-    "license": "GNU",
+    "license": "GPL-2.0",
     "keywords": [
         "airbrake",
         "phpbrake",

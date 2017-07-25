@@ -1,8 +1,8 @@
 <?php
 /*
-* Copyright (C) Senet Eindhoven B.V. - All Rights Reserved
-* Unauthorized copying of this file, via any medium is strictly prohibited
-* Proprietary and confidential
+* This file is part of the Zend Airbrake module
+*
+* For license information, please view the LICENSE file that was distributed with this source code.
 * Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
 */
 
@@ -18,11 +18,6 @@ use Zend\Mvc\MvcEvent;
 class Module
 {
     /**
-     * Used as the idenifier for confirugration for Zend Airbrake.
-     */
-    const CONFIG_MODULE_IDENTIFIER = 'zend_airbrake';
-
-    /**
      * @return array
      */
     public function getConfig()
@@ -37,7 +32,7 @@ class Module
     {
         // Error logging can be disabled from the application config, to make environment-specific logging possible.
         $config = $mvcEvent->getApplication()->getServiceManager()->get('Config');
-        if($config[self::CONFIG_MODULE_IDENTIFIER]['log_errors'] === false)
+        if($config['zend_airbrake']['log_errors'] === false)
         {
             return;
         }
@@ -52,9 +47,16 @@ class Module
     public function handleError(MvcEvent $mvcEvent)
     {
         $sm = $mvcEvent->getApplication()->getServiceManager();
+        $exception = $mvcEvent->getParam('exception');
+
+        // Skip errors without Exception.
+        if($exception === null)
+        {
+            return;
+        }
 
         /** @var ErrorHandler $errorHandler */
-        $errorHandler = $sm->get(ErrorHandler::class);
-        $errorHandler->onException($mvcEvent->getParam('exception'));
+        $errorHandler = $sm->   get(ErrorHandler::class);
+        $errorHandler->onException($exception);
     }
 }

@@ -3,20 +3,16 @@
 * This file is part of the Zend Airbrake module
 *
 * For license information, please view the LICENSE file that was distributed with this source code.
-* Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
+* Written by Frank Houweling <fhouweling@senet.nl>, 7/25/2017
 */
 
 namespace FrankHouweling\ZendAirbrake\Filter;
 
-use Airbrake\Errors\Notice;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\RequestInterface;
-
 /**
- * Class AbstractParamFilter
+ * Class AbstractRequestFilter
  * @package FrankHouweling\ZendAirbrake\Filter
  */
-abstract class AbstractParamFilter implements FilterInterface
+abstract class AbstractContextFilter implements FilterInterface
 {
     /**
      * Returns the param name.
@@ -36,7 +32,7 @@ abstract class AbstractParamFilter implements FilterInterface
      */
     public function __invoke($notice)
     {
-        $notice['params'][static::getName()] = $this->getValue();
+        $notice['context'][static::getName()] = $this->getValue();
         return $notice;
     }
 }

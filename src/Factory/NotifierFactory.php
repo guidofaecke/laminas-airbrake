@@ -1,8 +1,8 @@
 <?php
 /*
-* Copyright (C) Senet Eindhoven B.V. - All Rights Reserved
-* Unauthorized copying of this file, via any medium is strictly prohibited
-* Proprietary and confidential
+* This file is part of the Zend Airbrake module
+*
+* For license information, please view the LICENSE file that was distributed with this source code.
 * Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
 */
 
@@ -35,7 +35,7 @@ class NotifierFactory implements FactoryInterface
         $this->container = $container;
 
         /** @var array $config */
-        $config = $container->get('Config')[Module::CONFIG_MODULE_IDENTIFIER];
+        $config = $container->get('Config')['zend_airbrake'];
         /** @var array $connectionConfig */
         $connectionConfig = $config['connection'];
         $notifier = new Notifier([
@@ -43,10 +43,10 @@ class NotifierFactory implements FactoryInterface
             'projectKey' => $connectionConfig['projectKey'],
             'host' => $connectionConfig['host']
         ]);
+        $this->attachFilters($config['filters'], $notifier);
+
         Instance::set($notifier);
 
-        $request = $container->get('Request');
-        $this->attachFilters($config['filters'], $notifier, $request);
         return $notifier;
     }
 
@@ -54,7 +54,7 @@ class NotifierFactory implements FactoryInterface
      * @param array $filterCollection
      * @param Notifier $notifier
      */
-    private function attachFilters(array $filterCollection, Notifier $notifier, RequestInterface $request)
+    private function attachFilters(array $filterCollection, Notifier $notifier)
     {
         /** @var callable $filter */
         foreach($filterCollection as $filter)
@@ -74,10 +74,11 @@ class NotifierFactory implements FactoryInterface
      */
     private function getFilter($filter)
     {
-        if(!class_exists($filter))
+        if (!class_exists($filter))
         {
             $filterInfo = gettype($filter);
             throw new \InvalidArgumentException("The given filter of type `{$filterInfo}` is not a valid filter.");
         }
         return $this->container->get($filter);
+    }
 }
