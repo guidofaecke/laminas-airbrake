@@ -1,5 +1,5 @@
 # Zend Airbrake
-Airbrake (phpbrake) integration for Zend Framework 3 (ZF3).
+Airbrake (phpbrake) integration for Zend Framework 3 (ZF3) or Zend Framework 2 (ZF2) via backwards compatibility for 2.5.x or newer.
 
 *Please note that this a pre-production release.*
 
