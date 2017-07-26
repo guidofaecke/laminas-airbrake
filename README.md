@@ -46,6 +46,20 @@ class HelloWorldFilter implements FilterInterface
     }   
 }
 ```
+To make sure the filter is used by Zend Airbrake, it should be added to the configuration.
+
+```php
+'zend_airbrake' => [
+    'connection' => [
+        'projectId' => YOUR_PROJECT_ID,
+        'projectKey' => YOUR_PROJECT_KEY,
+        'host' => YOUR_AIRBRAKE_HOST
+    ],
+    'filters' => [
+        HelloWorldFilter::class
+    ]
+]
+```
 
 ### Disabling airbrake for development environments
 You might want to disable airbrake in the development environment. To do this, you can use the local zend configuration,
