@@ -21,5 +21,5 @@ interface RoutematchFilterInterface
      * RoutematchFilterInterface constructor.
      * @param RouteMatch $routematch
      */
-    public function __construct(RouteMatch $routematch);
+    public function __construct($routematch);
 }

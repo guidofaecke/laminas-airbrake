@@ -25,7 +25,7 @@ abstract class AbstractZendRoutematchFilter extends AbstractContextFilter implem
      * AbstractZendRoutematchFilter constructor.
      * @param RouteMatch $routematch
      */
-    public function __construct(RouteMatch $routematch)
+    public function __construct($routematch)
     {
         $this->routematch = $routematch;
     }

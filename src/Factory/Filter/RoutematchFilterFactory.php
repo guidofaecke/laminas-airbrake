@@ -9,6 +9,7 @@
 namespace FrankHouweling\ZendAirbrake\Factory\Filter;
 
 use FrankHouweling\ZendAirbrake\Filter\RoutematchFilterInterface;
+use Interop\Container\ContainerInterface;
 use Zend\Mvc\Application;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -80,5 +81,15 @@ class RoutematchFilterFactory implements AbstractFactoryInterface
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
         return $this->__invoke($serviceLocator, $requestedName);
+    }
+
+    /**
+     * @param ContainerInterface $container
+     * @param string $requestedName
+     * @return bool
+     */
+    public function canCreate(ContainerInterface $container, $requestedName)
+    {
+        return $this->canCreateServiceWithName($container, "", $requestedName);
     }
 }
