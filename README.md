@@ -49,17 +49,17 @@ class HelloWorldFilter implements FilterInterface
 To make sure the filter is used by Zend Airbrake, it should be added to the configuration.
 
 ```php
+<?php
+
 'zend_airbrake' => [
-    'connection' => [
-        'projectId' => YOUR_PROJECT_ID,
-        'projectKey' => YOUR_PROJECT_KEY,
-        'host' => YOUR_AIRBRAKE_HOST
-    ],
+    // Your connections string etc.
     'filters' => [
         HelloWorldFilter::class
     ]
 ]
 ```
+
+It is possible to use a factory for your Zend Airbrake filters. To make use of this, simply add the filter to your service manager configuration.
 
 ### Disabling airbrake for development environments
 You might want to disable airbrake in the development environment. To do this, you can use the local zend configuration,
@@ -70,6 +70,7 @@ For example, file: config/autload/local.php
 <?php
 
 return [
+    // Your connections string, filters etc.
     'zend_airbrake' => [
         'log_errors' => false
     ]
