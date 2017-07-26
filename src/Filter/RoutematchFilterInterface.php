@@ -9,7 +9,7 @@
 
 namespace FrankHouweling\ZendAirbrake\Filter;
 
-use Zend\Router\RouteMatch;
+use Zend\Mvc\Router\RouteMatch;
 
 /**
  * Interface RoutematchFilterInterface

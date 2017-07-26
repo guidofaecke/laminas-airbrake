@@ -10,10 +10,8 @@ namespace FrankHouweling\ZendAirbrake\Factory\Filter;
 
 use FrankHouweling\ZendAirbrake\Filter\RemoteIpParamFilter;
 use Interop\Container\ContainerInterface;
-use Interop\Container\Exception\ContainerException;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Class RemoteIpParamFilterFactory
@@ -31,5 +29,16 @@ class RemoteIpParamFilterFactory implements FactoryInterface
         $request = $container->get('Request');
         $remoteIpParamFilter = new RemoteIpParamFilter($request);
         return $remoteIpParamFilter;
+    }
+
+    /**
+     * Create service
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return mixed
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        return $this->__invoke($serviceLocator, "");
     }
 }

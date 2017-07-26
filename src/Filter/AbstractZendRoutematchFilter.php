@@ -9,7 +9,7 @@
 namespace FrankHouweling\ZendAirbrake\Filter;
 
 use Zend\Http\PhpEnvironment\Request;
-use Zend\Router\RouteMatch;
+use Zend\Mvc\Router\RouteMatch;
 use Zend\Stdlib\RequestInterface;
 
 /**

@@ -10,11 +10,8 @@ namespace FrankHouweling\ZendAirbrake\Factory;
 
 use Airbrake\Instance;
 use Airbrake\Notifier;
-use FrankHouweling\ZendAirbrake\Filter\FilterInterface;
-use FrankHouweling\ZendAirbrake\Module;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\Stdlib\Request;
-use Zend\Stdlib\RequestInterface;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Class NotifierFactory
@@ -80,5 +77,16 @@ class NotifierFactory implements FactoryInterface
             throw new \InvalidArgumentException("The given filter of type `{$filterInfo}` is not a valid filter.");
         }
         return $this->container->get($filter);
+    }
+
+    /**
+     * Create service
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return mixed
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        return $this->__invoke($serviceLocator, "");
     }
 }

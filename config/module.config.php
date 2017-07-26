@@ -25,9 +25,10 @@ return [
             \Airbrake\Notifier::class => \FrankHouweling\ZendAirbrake\Factory\NotifierFactory::class,
             \Airbrake\ErrorHandler::class => \FrankHouweling\ZendAirbrake\Factory\ErrorHandlerFactory::class,
             RemoteIpParamFilter::class => RemoteIpParamFilterFactory::class,
-            ComponentContextFilter::class => RoutematchFilterFactory::class,
-            ActionContextFilter::class => RoutematchFilterFactory::class,
             RootDirectoryContextFilter::class => InvokableFactory::class
+        ],
+        'abstract_factories' => [
+            RoutematchFilterFactory::class => RoutematchFilterFactory::class
         ]
     ],
     'zend_airbrake' => [

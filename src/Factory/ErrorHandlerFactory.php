@@ -10,7 +10,8 @@ namespace FrankHouweling\ZendAirbrake\Factory;
 
 use Airbrake\ErrorHandler;
 use Airbrake\Notifier;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Class ErrorHandlerFactory
@@ -24,5 +25,16 @@ class ErrorHandlerFactory implements FactoryInterface
         $errorHandler = new ErrorHandler($notifier);
         $errorHandler->register();
         return $errorHandler;
+    }
+
+    /**
+     * Create service
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return mixed
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        return $this->__invoke($serviceLocator, "");
     }
 }
