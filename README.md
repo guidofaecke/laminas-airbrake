@@ -3,8 +3,6 @@ Airbrake (phpbrake) integration for Zend Framework 3 (ZF3) or Zend Framework 2 (
 
 Airbrake is a tool that captures and tracks your application's exceptions. This library connects your Zend application to Airbrake, to make exception tracking possible. It is also possible to use Zend Airbrake with different services that use the Airbrake protocol, like CodebaseHQ.
 
-*Please note that this a pre-production release.*
-
 ## Installing
 Use composer to install this module.
 ```shell
