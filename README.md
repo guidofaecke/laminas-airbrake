@@ -16,13 +16,16 @@ It is required to correctly set the connection settings to connect to the Airbra
 local Zend configuration (`config/autoload/local.php`).
 
 ```php
-'zend_airbrake' => [
-    'connection' => [
-        'projectId' => YOUR_PROJECT_ID,
-        'projectKey' => YOUR_PROJECT_KEY,
-        'host' => YOUR_AIRBRAKE_HOST
+<?php
+return [
+    'zend_airbrake' => [
+        'connection' => [
+            'projectId' => YOUR_PROJECT_ID,
+            'projectKey' => YOUR_PROJECT_KEY,
+            'host' => YOUR_AIRBRAKE_HOST
+        ]
     ]
-]
+];
 ```
 
 ## Custom airbrake filters
@@ -51,12 +54,14 @@ To make sure the filter is used by Zend Airbrake, it should be added to the conf
 ```php
 <?php
 
-'zend_airbrake' => [
-    // Your connections string etc.
-    'filters' => [
-        HelloWorldFilter::class
+return [
+    'zend_airbrake' => [
+        // Your connections string etc.
+        'filters' => [
+            HelloWorldFilter::class
+        ]
     ]
-]
+];
 ```
 
 It is possible to use a factory for your Zend Airbrake filters. To make use of this, simply add the filter to your service manager configuration.
