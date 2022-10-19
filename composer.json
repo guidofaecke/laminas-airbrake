@@ -26,7 +26,7 @@
     "require": {
         "php": "^7.4 || ~8.0 || ~8.1",
         "airbrake/phpbrake": "^0.3",
-        "laminas/laminas-component-installer": "^3.0",
+        "laminas/laminas-component-installer": "^2.4.0",
         "laminas/laminas-http": "^2.16",
         "laminas/laminas-mvc": "^3.3",
         "laminas/laminas-stdlib": "^3.13",
