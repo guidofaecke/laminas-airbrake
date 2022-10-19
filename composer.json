@@ -1,6 +1,6 @@
 {
-    "name": "frank-houweling/zend-airbrake",
-    "description": "Airbrake (phpbrake) integration for Zend Framework 3 (ZF3)",
+    "name": "guidofaecke/laminas-airbrake",
+    "description": "Airbrake (phpbrake) integration for Laminas",
     "type": "library",
     "license": "GPL-2.0",
     "keywords": [
@@ -9,24 +9,45 @@
         "exception",
         "error",
         "logging",
-        "zf3",
+        "laminas",
         "zend"
     ],
-    "homepage": "http://www.senet.nl/",
+    "homepage": "https://guidofaecke.github.io/",
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "config": {
+        "process-timeout": 4000,
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "laminas/laminas-component-installer": true
+        }
+    },
     "require": {
-        "php": "^7.0",
-        "airbrake/phpbrake": "^0.3"
+        "php": "^7.4 || ~8.0 || ~8.1",
+        "airbrake/phpbrake": "^0.3",
+        "laminas/laminas-component-installer": "^3.0",
+        "laminas/laminas-http": "^2.16",
+        "laminas/laminas-mvc": "^3.3",
+        "laminas/laminas-stdlib": "^3.13",
+        "psr/container": "^2.0"
+    },
+    "require-dev": {
+        "doctrine/coding-standard": "^9.0",
+        "laminas/laminas-coding-standard": "^2.3",
+        "roave/security-advisories": "dev-latest",
+        "slevomat/coding-standard": "^7.2",
+        "squizlabs/php_codesniffer": "^3.6",
+        "vimeo/psalm": "^4.29"
     },
     "autoload": {
         "psr-4": {
-            "FrankHouweling\\ZendAirbrake\\": "src/"
+            "GuidoFaecke\\LaminasAirbrake\\": "src/"
         }
     },
     "extra": {
-        "zf": {
-            "component": "FrankHouweling\\ZendAirbrake"
+        "laminas": {
+            "component": "GuidoFaecke\\LaminasAirbrake"
         }
     }
- }
+}

@@ -1,44 +1,47 @@
 <?php
-/*
-* This file is part of the Zend Airbrake module
-*
-* For license information, please view the LICENSE file that was distributed with this source code.
-* Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
-*/
 
-namespace FrankHouweling\ZendAirbrake\Factory;
+declare(strict_types=1);
 
+namespace GuidoFaecke\LaminasAirbrake\Factory;
+
+use Airbrake\Exception as AirbrakeException;
 use Airbrake\Instance;
 use Airbrake\Notifier;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use InvalidArgumentException;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
+
+use function class_exists;
+use function gettype;
+use function is_callable;
 
 /**
- * Class NotifierFactory
- * @package FrankHouweling\ZendAirbrake\Factory
+ * @psalm-suppress MissingConstructor
  */
-class NotifierFactory implements FactoryInterface
+class NotifierFactory
 {
-    protected $container;
+    protected ContainerInterface $container;
 
     /**
-     * @param \Interop\Container\ContainerInterface $container
-     * @param string $requestedName
-     * @param array|NULL $options
-     * @return Notifier
+     * @throws ContainerExceptionInterface
+     * @throws AirbrakeException
+     * @throws NotFoundExceptionInterface
      */
-    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = NULL)
+    public function __invoke(ContainerInterface $container, string $requestedName, ?array $options = null): Notifier
     {
         $this->container = $container;
 
         /** @var array $config */
-        $config = $container->get('Config')['zend_airbrake'];
+        $config = $container->get('Config')['laminas_airbrake'];
+
         /** @var array $connectionConfig */
         $connectionConfig = $config['connection'];
+
         $notifier = new Notifier([
-            'projectId' => $connectionConfig['projectId'],
+            'projectId'  => $connectionConfig['projectId'],
             'projectKey' => $connectionConfig['projectKey'],
-            'host' => $connectionConfig['host']
+            'host'       => $connectionConfig['host'],
         ]);
         $this->attachFilters($config['filters'], $notifier);
 
@@ -48,16 +51,14 @@ class NotifierFactory implements FactoryInterface
     }
 
     /**
-     * @param array $filterCollection
-     * @param Notifier $notifier
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    private function attachFilters(array $filterCollection, Notifier $notifier)
+    private function attachFilters(array $filterCollection, Notifier $notifier): void
     {
         /** @var callable $filter */
-        foreach($filterCollection as $filter)
-        {
-            if(!is_callable($filter))
-            {
+        foreach ($filterCollection as $filter) {
+            if (! is_callable($filter)) {
                 $filter = $this->getFilter($filter);
             }
 
@@ -66,27 +67,17 @@ class NotifierFactory implements FactoryInterface
     }
 
     /**
-     * @param $filter
      * @return mixed
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    private function getFilter($filter)
+    private function getFilter(string $filter)
     {
-        if (!class_exists($filter))
-        {
+        if (! class_exists($filter)) {
             $filterInfo = gettype($filter);
-            throw new \InvalidArgumentException("The given filter of type `{$filterInfo}` is not a valid filter.");
+            throw new InvalidArgumentException("The given filter of type `{$filterInfo}` is not a valid filter.");
         }
-        return $this->container->get($filter);
-    }
 
-    /**
-     * Create service
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this->__invoke($serviceLocator, "");
+        return $this->container->get($filter);
     }
 }

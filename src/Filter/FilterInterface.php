@@ -1,29 +1,10 @@
 <?php
-/*
-* This file is part of the Zend Airbrake module
-*
-* For license information, please view the LICENSE file that was distributed with this source code.
-* Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
-*/
 
+declare(strict_types=1);
 
-namespace FrankHouweling\ZendAirbrake\Filter;
+namespace GuidoFaecke\LaminasAirbrake\Filter;
 
-use Airbrake\Errors\Notice;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\Request;
-use Zend\Stdlib\RequestInterface;
-
-/**
- * Interface FilterInterface
- * @package FrankHouweling\ZendAirbrake\Filter
- */
 interface FilterInterface
 {
-    /**
-     * @param array $notice
-     * @param MvcEvent $mvcEvent
-     * @return mixed
-     */
-    public function __invoke($notice);
+    public function __invoke(array $notice): array;
 }

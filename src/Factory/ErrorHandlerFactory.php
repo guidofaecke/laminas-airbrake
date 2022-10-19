@@ -1,40 +1,28 @@
 <?php
-/*
-* This file is part of the Zend Airbrake module
-*
-* For license information, please view the LICENSE file that was distributed with this source code.
-* Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
-*/
 
-namespace FrankHouweling\ZendAirbrake\Factory;
+declare(strict_types=1);
+
+namespace GuidoFaecke\LaminasAirbrake\Factory;
 
 use Airbrake\ErrorHandler;
 use Airbrake\Notifier;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
-/**
- * Class ErrorHandlerFactory
- * @package FrankHouweling\ZendAirbrake\Factory
- */
-class ErrorHandlerFactory implements FactoryInterface
+class ErrorHandlerFactory
 {
-    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, array $options = NULL)
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function __invoke(ContainerInterface $container, string $requestedName, ?array $options = null): ErrorHandler
     {
         $notifier = $container->get(Notifier::class);
+
         $errorHandler = new ErrorHandler($notifier);
         $errorHandler->register();
-        return $errorHandler;
-    }
 
-    /**
-     * Create service
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this->__invoke($serviceLocator, "");
+        return $errorHandler;
     }
 }

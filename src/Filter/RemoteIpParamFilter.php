@@ -1,54 +1,32 @@
 <?php
-/*
-* This file is part of the Zend Airbrake module
-*
-* For license information, please view the LICENSE file that was distributed with this source code.
-* Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
-*/
 
+declare(strict_types=1);
 
-namespace FrankHouweling\ZendAirbrake\Filter;
+namespace GuidoFaecke\LaminasAirbrake\Filter;
 
-use Zend\Http\PhpEnvironment\Request;
-use Zend\Stdlib\RequestInterface;
+use Laminas\Http\PhpEnvironment\Request;
+use Laminas\Stdlib\RequestInterface;
 
-/**
- * Class RemoteIpParamFilter
- * @package FrankHouweling\ZendAirbrake\Filter
- */
 class RemoteIpParamFilter extends AbstractParamFilter
 {
-    /**
-     * @var RequestInterface
-     */
-    private $request;
+    private RequestInterface $request;
 
-    /**
-     * RemoteIpParamFilter constructor.
-     * @param RequestInterface $request
-     */
     public function __construct(RequestInterface $request)
     {
         $this->request = $request;
     }
 
-    /**
-     * @return string
-     */
-    protected static function getName()
+    protected static function getName(): string
     {
-        return "remote-ip";
+        return 'remote-ip';
     }
 
-    /**
-     * @return string
-     */
     protected function getValue(): string
     {
-        if(!($this->request instanceof Request))
-        {
+        if (! $this->request instanceof Request) {
             return 'none';
         }
+
         return $this->request->getServer()->get('REMOTE_ADDR');
     }
 }

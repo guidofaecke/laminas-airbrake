@@ -1,34 +1,18 @@
 <?php
-/*
-* This file is part of the Zend Airbrake module
-*
-* For license information, please view the LICENSE file that was distributed with this source code.
-* Written by Frank Houweling <fhouweling@senet.nl>, 7/25/2017
-*/
 
-namespace FrankHouweling\ZendAirbrake\Filter;
+declare(strict_types=1);
 
-/**
- * Class ActionContextFilter
- * @package FrankHouweling\ZendAirbrake\Filter
- */
-class ActionContextFilter extends AbstractZendRoutematchFilter
+namespace GuidoFaecke\LaminasAirbrake\Filter;
+
+class ActionContextFilter extends AbstractLaminasRoutematchFilter
 {
-    /**
-     * @return string
-     */
-    protected static function getName()
+    protected static function getName(): string
     {
-        return "action";
+        return 'action';
     }
 
-    /**
-     * @return string
-     */
     protected function getValue(): string
     {
-        $action = $this->getRoutematch()->getParam('action');
-        return $action;
+        return $this->getRoutematch()->getParam('action');
     }
-
 }

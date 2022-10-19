@@ -1,29 +1,32 @@
 <?php
 /*
-* This file is part of the Zend Airbrake module
+* This file is part of the Laminas Airbrake module
 *
 * For license information, please view the LICENSE file that was distributed with this source code.
 * Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
 */
 
-namespace FrankHouweling\ZendAirbrake;
+namespace GuidoFaecke\LaminasAirbrake;
 
-use FrankHouweling\ZendAirbrake\Factory\Filter\RemoteIpParamFilterFactory;
-use FrankHouweling\ZendAirbrake\Factory\Filter\RoutematchFilterFactory;
-use FrankHouweling\ZendAirbrake\Factory\Filter\ZendContextFilterFactory;
-use FrankHouweling\ZendAirbrake\Filter\ActionContextFilter;
-use FrankHouweling\ZendAirbrake\Filter\ComponentContextFilter;
-use FrankHouweling\ZendAirbrake\Filter\RemoteIpParamFilter;
-use FrankHouweling\ZendAirbrake\Filter\RootDirectoryContextFilter;
-use FrankHouweling\ZendAirbrake\Filter\ZendContextFilter;
-use FrankHouweling\ZendAirbrake\Filter\ZendModuleContextFilter;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Airbrake\ErrorHandler;
+use Airbrake\Notifier;
+use GuidoFaecke\LaminasAirbrake\Factory\ErrorHandlerFactory;
+use GuidoFaecke\LaminasAirbrake\Factory\Filter\RemoteIpParamFilterFactory;
+use GuidoFaecke\LaminasAirbrake\Factory\Filter\RoutematchFilterFactory;
+use GuidoFaecke\LaminasAirbrake\Factory\NotifierFactory;
+use GuidoFaecke\LaminasAirbrake\Filter\ActionContextFilter;
+use GuidoFaecke\LaminasAirbrake\Filter\ComponentContextFilter;
+use GuidoFaecke\LaminasAirbrake\Filter\RemoteIpParamFilter;
+use GuidoFaecke\LaminasAirbrake\Filter\RootDirectoryContextFilter;
+use GuidoFaecke\LaminasAirbrake\Filter\LaminasContextFilter;
+use GuidoFaecke\LaminasAirbrake\Filter\LaminasModuleContextFilter;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'service_manager' => [
         'factories' => [
-            \Airbrake\Notifier::class => \FrankHouweling\ZendAirbrake\Factory\NotifierFactory::class,
-            \Airbrake\ErrorHandler::class => \FrankHouweling\ZendAirbrake\Factory\ErrorHandlerFactory::class,
+            Notifier::class => NotifierFactory::class,
+            ErrorHandler::class => ErrorHandlerFactory::class,
             RemoteIpParamFilter::class => RemoteIpParamFilterFactory::class,
             RootDirectoryContextFilter::class => InvokableFactory::class
         ],

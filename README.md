@@ -1,14 +1,14 @@
-# Zend Airbrake
-Airbrake (phpbrake) integration for Zend Framework 3 (ZF3) or Zend Framework 2 (ZF2) via backwards compatibility for 2.5.x or newer.
+# Laminas Airbrake
+Airbrake (phpbrake) integration for Laminas.
 
-Airbrake is a tool that captures and tracks your application's exceptions. This library connects your Zend application to Airbrake, to make exception tracking possible. It is also possible to use Zend Airbrake with different services that use the Airbrake protocol, like CodebaseHQ.
+Airbrake is a tool that captures and tracks your application's exceptions. This library connects your Laminas application to Airbrake, to make exception tracking possible. It is also possible to use Laminas Airbrake with different services that use the Airbrake protocol, like CodebaseHQ.
 
 ## Installing
 Use composer to install this module.
 ```shell
-composer require frank-houweling/zend-airbrake
+composer require guidofaecke/laminas-airbrake
 ```
-After composer installation, make sure that the \FrankHouweling\ZendAirbrake module is added to the module configuration.
+After composer installation, make sure that the \guidofaecke\LaminasAirbrake module is added to the module configuration.
 In most cases, the module configuration can be found in `config/module.config.php`
 
 ## Connection configuration
@@ -18,7 +18,7 @@ local Zend configuration (`config/autoload/local.php`).
 ```php
 <?php
 return [
-    'zend_airbrake' => [
+    'laminas_airbrake' => [
         'connection' => [
             'projectId' => YOUR_PROJECT_ID,
             'projectKey' => YOUR_PROJECT_KEY,
@@ -36,9 +36,10 @@ Custom airbrake filters should be either functions requiring a notice array as p
 (as with [https://github.com/airbrake/phpbrake](phpbrake)), or a class implementing the FilterInterface (recommended).
 
 For example:
+
 ```php
 <?php
-use \FrankHouweling\ZendAirbrake\Filter\FilterInterface;
+use guidofaecke\LaminasAirbrake\Filter\FilterInterface;
 
 class HelloWorldFilter implements FilterInterface
 {
@@ -49,13 +50,13 @@ class HelloWorldFilter implements FilterInterface
     }   
 }
 ```
-To make sure the filter is used by Zend Airbrake, it should be added to the configuration.
+To make sure the filter is used by Laminas Airbrake, it should be added to the configuration.
 
 ```php
 <?php
 
 return [
-    'zend_airbrake' => [
+    'laminas_airbrake' => [
         // Your connections string etc.
         'filters' => [
             HelloWorldFilter::class
@@ -64,7 +65,7 @@ return [
 ];
 ```
 
-It is possible to use a factory for your Zend Airbrake filters. To make use of this, simply add the filter to your service manager configuration.
+It is possible to use a factory for your Laminas Airbrake filters. To make use of this, simply add the filter to your service manager configuration.
 
 ### Disabling airbrake for development environments
 You might want to disable airbrake in the development environment. To do this, you can use the local zend configuration,
@@ -76,11 +77,11 @@ For example, file: config/autload/local.php
 
 return [
     // Your connections string, filters etc.
-    'zend_airbrake' => [
+    'laminas_airbrake' => [
         'log_errors' => false
     ]
 ];
 ```
 
-Via the zend local configuration, it is also possible to use different connection settings or different filters for
+Via the laminas local configuration, it is also possible to use different connection settings or different filters for
 different environments.

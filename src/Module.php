@@ -1,62 +1,61 @@
 <?php
-/*
-* This file is part of the Zend Airbrake module
-*
-* For license information, please view the LICENSE file that was distributed with this source code.
-* Written by Frank Houweling <fhouweling@senet.nl>, 7/24/2017
-*/
 
-namespace FrankHouweling\ZendAirbrake;
+declare(strict_types=1);
+
+namespace GuidoFaecke\LaminasAirbrake;
+
 use Airbrake\ErrorHandler;
-use Airbrake\Notifier;
-use Zend\Mvc\MvcEvent;
+use Laminas\Mvc\MvcEvent;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
-/**
- * Class Module
- * @package FrankHouweling\ZendAirbrake
- */
 class Module
 {
     /**
-     * @return array
+     * @psalm-suppress MixedReturnStatement
+     * @psalm-suppress MixedInferredReturnType
      */
-    public function getConfig()
+    public function getConfig(): array
     {
-        return include __DIR__ . "/../config/module.config.php";
+        return include __DIR__ . '/../config/module.config.php';
     }
 
     /**
-     * @param $e
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @psalm-suppress MixedArrayAccess
+     * @psalm-suppress MixedAssignment
      */
-    public function onBootstrap(MvcEvent $mvcEvent)
+    public function onBootstrap(MvcEvent $mvcEvent): void
     {
         // Error logging can be disabled from the application config, to make environment-specific logging possible.
         $config = $mvcEvent->getApplication()->getServiceManager()->get('Config');
-        if($config['zend_airbrake']['log_errors'] === false)
-        {
+        if ($config['laminas_airbrake']['log_errors'] === false) {
             return;
         }
 
         $eventManager = $mvcEvent->getApplication()->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'handleError'));
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'handleError']);
     }
 
     /**
-     * @param MvcEvent $event
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @psalm-suppress MixedAssignment
      */
-    public function handleError(MvcEvent $mvcEvent)
+    public function handleError(MvcEvent $mvcEvent): void
     {
-        $sm = $mvcEvent->getApplication()->getServiceManager();
+        $sm        = $mvcEvent->getApplication()->getServiceManager();
         $exception = $mvcEvent->getParam('exception');
 
         // Skip errors without Exception.
-        if($exception === null)
-        {
+        if ($exception === null) {
             return;
         }
 
         /** @var ErrorHandler $errorHandler */
-        $errorHandler = $sm->   get(ErrorHandler::class);
+        $errorHandler = $sm->get(ErrorHandler::class);
+
         $errorHandler->onException($exception);
     }
 }
