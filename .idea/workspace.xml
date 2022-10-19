@@ -1,35 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c770be2b-8393-49dd-8a1e-c8c4133caa43" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phpcs.xml.dist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/psalm.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Filter/AbstractLaminasRoutematchFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="c770be2b-8393-49dd-8a1e-c8c4133caa43" name="Default" comment="Composer settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/zend-airbrake.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/zend-airbrake.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/module.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/module.config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/ErrorHandlerFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/ErrorHandlerFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/Filter/RemoteIpParamFilterFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/Filter/RemoteIpParamFilterFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/Filter/RoutematchFilterFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/Filter/RoutematchFilterFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/NotifierFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/NotifierFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/AbstractContextFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/AbstractContextFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/AbstractParamFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/AbstractParamFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/AbstractZendRoutematchFilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ActionContextFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/ActionContextFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/ComponentContextFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/ComponentContextFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/FilterInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/FilterInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/RemoteIpParamFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/RemoteIpParamFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/RootDirectoryContextFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/RootDirectoryContextFilter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filter/RoutematchFilterInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filter/RoutematchFilterInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Module.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Module.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,8 +199,23 @@
       <option name="presentableId" value="Default" />
       <updated>1500981807586</updated>
       <workItem from="1500981809223" duration="2824000" />
-      <workItem from="1666128836516" duration="10334000" />
+      <workItem from="1666128836516" duration="10813000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1666159541903</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666159541903</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Composer settings">
+      <created>1666159886725</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1666159886725</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -256,6 +245,11 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="Composer settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Composer settings" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/tests/TestConfiguration.php.dist">
