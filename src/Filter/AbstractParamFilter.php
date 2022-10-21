@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace GuidoFaecke\LaminasAirbrake\Filter;
 
 abstract class AbstractParamFilter implements FilterInterface
@@ -13,7 +11,7 @@ abstract class AbstractParamFilter implements FilterInterface
 
     abstract protected function getValue(): string;
 
-    public function __invoke(array $notice): array
+    public function __invoke($notice)
     {
         $notice['params'][static::getName()] = $this->getValue();
         return $notice;

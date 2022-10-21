@@ -18,33 +18,31 @@ use GuidoFaecke\LaminasAirbrake\Filter\ActionContextFilter;
 use GuidoFaecke\LaminasAirbrake\Filter\ComponentContextFilter;
 use GuidoFaecke\LaminasAirbrake\Filter\RemoteIpParamFilter;
 use GuidoFaecke\LaminasAirbrake\Filter\RootDirectoryContextFilter;
-use GuidoFaecke\LaminasAirbrake\Filter\LaminasContextFilter;
-use GuidoFaecke\LaminasAirbrake\Filter\LaminasModuleContextFilter;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'service_manager' => [
-        'factories' => [
-            Notifier::class => NotifierFactory::class,
-            ErrorHandler::class => ErrorHandlerFactory::class,
-            RemoteIpParamFilter::class => RemoteIpParamFilterFactory::class,
+        'factories'          => [
+            Notifier::class                   => NotifierFactory::class,
+            ErrorHandler::class               => ErrorHandlerFactory::class,
+            RemoteIpParamFilter::class        => RemoteIpParamFilterFactory::class,
             RootDirectoryContextFilter::class => InvokableFactory::class
         ],
         'abstract_factories' => [
             RoutematchFilterFactory::class => RoutematchFilterFactory::class
         ]
     ],
-    'zend_airbrake' => [
+    'laminas_airbrake' => [
         'log_errors' => true,
-        'filters' => [
+        'filters'    => [
             ComponentContextFilter::class,
             ActionContextFilter::class,
             RootDirectoryContextFilter::class
         ],
         'connection' => [
-            'projectId' => '',
+            'projectId'  => '',
             'projectKey' => '',
-            'host' => ''
+            'host'       => ''
         ]
     ]
 ];

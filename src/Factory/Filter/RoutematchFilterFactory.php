@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace GuidoFaecke\LaminasAirbrake\Factory\Filter;
 
 use GuidoFaecke\LaminasAirbrake\Filter\RoutematchFilterInterface;

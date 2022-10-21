@@ -1,21 +1,17 @@
 <?php
 
-declare(strict_types=1);
-
 namespace GuidoFaecke\LaminasAirbrake\Filter;
-
-use Laminas\Router\RouteMatch;
 
 abstract class AbstractLaminasRoutematchFilter extends AbstractContextFilter implements RoutematchFilterInterface
 {
-    private RouteMatch $routematch;
+    private $routematch;
 
-    public function __construct(RouteMatch $routematch)
+    public function __construct($routematch)
     {
         $this->routematch = $routematch;
     }
 
-    protected function getRoutematch(): RouteMatch
+    protected function getRoutematch()
     {
         return $this->routematch;
     }

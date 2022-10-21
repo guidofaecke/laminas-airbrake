@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace GuidoFaecke\LaminasAirbrake\Factory;
 
 use Airbrake\Exception as AirbrakeException;
@@ -28,7 +26,7 @@ class NotifierFactory
      * @throws AirbrakeException
      * @throws NotFoundExceptionInterface
      */
-    public function __invoke(ContainerInterface $container, string $requestedName, ?array $options = null): Notifier
+    public function __invoke(ContainerInterface $container, string $requestedName, array $options = null): Notifier
     {
         $this->container = $container;
 
