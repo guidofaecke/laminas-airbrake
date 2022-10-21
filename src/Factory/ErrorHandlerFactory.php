@@ -16,7 +16,7 @@ class ErrorHandlerFactory
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function __invoke(ContainerInterface $container, string $requestedName, array $options = null): ErrorHandler
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): ErrorHandler
     {
         $notifier = $container->get(Notifier::class);
         assert($notifier instanceof Notifier);

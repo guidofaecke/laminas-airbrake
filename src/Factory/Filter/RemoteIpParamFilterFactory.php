@@ -9,8 +9,8 @@ class RemoteIpParamFilterFactory
 {
     public function __invoke(
         ContainerInterface $container,
-        string $requestedName,
-        array $options = null
+        $requestedName,
+        ?array $options = null
     ) {
         $request = $container->get('Request');
 

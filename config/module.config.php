@@ -26,11 +26,9 @@ return [
             Notifier::class                   => NotifierFactory::class,
             ErrorHandler::class               => ErrorHandlerFactory::class,
             RemoteIpParamFilter::class        => RemoteIpParamFilterFactory::class,
-            RootDirectoryContextFilter::class => InvokableFactory::class
+            RootDirectoryContextFilter::class => InvokableFactory::class,
+            RoutematchFilterFactory::class    => InvokableFactory::class,
         ],
-        'abstract_factories' => [
-            RoutematchFilterFactory::class => RoutematchFilterFactory::class
-        ]
     ],
     'laminas_airbrake' => [
         'log_errors' => true,

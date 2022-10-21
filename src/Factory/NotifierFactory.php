@@ -26,7 +26,7 @@ class NotifierFactory
      * @throws AirbrakeException
      * @throws NotFoundExceptionInterface
      */
-    public function __invoke(ContainerInterface $container, string $requestedName, array $options = null): Notifier
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): Notifier
     {
         $this->container = $container;
 
