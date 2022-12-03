@@ -6,5 +6,5 @@ namespace GuidoFaecke\LaminasAirbrake\Filter;
 
 interface FilterInterface
 {
-    public function __invoke($notice);
+    public function __invoke(array $notice): array;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GuidoFaecke\LaminasAirbrake\Factory;
 
 use Airbrake\Exception as AirbrakeException;
@@ -41,7 +43,8 @@ class NotifierFactory
             'projectKey' => $connectionConfig['projectKey'],
             'host'       => $connectionConfig['host'],
         ]);
-        $this->attachFilters($config['filters'], $notifier);
+
+        $this->attachFilters($config['laminas_airbrake']['filters'], $notifier);
 
         Instance::set($notifier);
 
