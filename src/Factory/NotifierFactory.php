@@ -26,15 +26,15 @@ class NotifierFactory
      * @throws AirbrakeException
      * @throws NotFoundExceptionInterface
      */
-    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): Notifier
+    public function __invoke(ContainerInterface $container): Notifier
     {
         $this->container = $container;
 
         /** @var array $config */
-        $config = $container->get('Config')['laminas_airbrake'];
+        $config = $container->get('Config', []);
 
         /** @var array $connectionConfig */
-        $connectionConfig = $config['connection'];
+        $connectionConfig = $config['laminas_airbrake']['connection'];
 
         $notifier = new Notifier([
             'projectId'  => $connectionConfig['projectId'],

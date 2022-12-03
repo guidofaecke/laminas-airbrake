@@ -6,7 +6,7 @@ abstract class AbstractContextFilter implements FilterInterface
 {
     abstract protected static function getName();
 
-    abstract protected function getValue(): string;
+    abstract protected function getValue(); //: string;
 
     public function __invoke($notice)
     {

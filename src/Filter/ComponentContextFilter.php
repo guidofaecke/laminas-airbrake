@@ -4,13 +4,20 @@ namespace GuidoFaecke\LaminasAirbrake\Filter;
 
 class ComponentContextFilter extends AbstractLaminasRoutematchFilter
 {
-    protected static function getName()
+    protected static function getName(): string
     {
         return 'component';
     }
 
-    protected function getValue(): string
+    /**
+     * @return mixed|null
+     */
+    protected function getValue()
     {
+        if ($this->getRoutematch() === null) {
+            return null;
+        }
+
         return $this->getRoutematch()->getParam('controller');
     }
 }
