@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GuidoFaecke\LaminasAirbrake\Filter;
 
 use Laminas\Router\RouteMatch;
@@ -8,7 +10,7 @@ abstract class AbstractLaminasRoutematchFilter extends AbstractContextFilter imp
 {
     private ?RouteMatch $routematch;
 
-    public function __construct(?RouteMatch $routematch)
+    public function __construct(?RouteMatch $routematch = null)
     {
         $this->routematch = $routematch;
     }

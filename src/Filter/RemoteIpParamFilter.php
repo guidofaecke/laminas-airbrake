@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GuidoFaecke\LaminasAirbrake\Filter;
 
 use Laminas\Http\PhpEnvironment\Request;
@@ -7,6 +9,7 @@ use Laminas\Stdlib\RequestInterface;
 
 class RemoteIpParamFilter extends AbstractParamFilter
 {
+    /** @var RequestInterface|mixed  */
     private $request;
 
     public function __construct(RequestInterface $request)
@@ -14,12 +17,15 @@ class RemoteIpParamFilter extends AbstractParamFilter
         $this->request = $request;
     }
 
-    protected static function getName()
+    protected static function getName(): string
     {
         return 'remote-ip';
     }
 
-    protected function getValue(): string
+    /**
+     * @return mixed|string
+     */
+    protected function getValue()
     {
         if (! $this->request instanceof Request) {
             return 'none';

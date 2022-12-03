@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GuidoFaecke\LaminasAirbrake\Filter;
 
 use Laminas\Router\RouteMatch;
