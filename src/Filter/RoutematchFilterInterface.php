@@ -6,5 +6,5 @@ use Laminas\Router\RouteMatch;
 
 interface RoutematchFilterInterface
 {
-    public function __construct($routematch);
+    public function __construct(RouteMatch $routematch);
 }

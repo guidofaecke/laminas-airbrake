@@ -14,11 +14,10 @@ use function class_implements;
 class RoutematchFilterFactory
 {
     /**
-     * @return object
      * @throws InvalidArgumentException
      * @throws ContainerExceptionInterface
      */
-    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
+    public function __invoke(ContainerInterface $container, string $requestedName): object
     {
         if (! class_exists($requestedName)) {
             throw new InvalidArgumentException("The requested filter class `{$requestedName}` is not a valid classname"
